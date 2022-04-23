@@ -1,0 +1,68 @@
+<!--
+<div class="card my-5">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">EmployeeType</th>
+        <th scope="col">Image</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{employee.id}}</td>
+        <td>{{employee.name}}</td>
+        <td>{{employee.employeeType.name}}</td>
+        <td>{{employee.imageUrl}}</td>
+        <td>
+          <button>delete</button>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+-->
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+  <nav class="navbar">
+    <input class="form-control" type="text" name="firstName"[(ngModel)]="firstName"(ngModelChange)="Search()"
+           placeholder="Enter First name to search">
+  </nav>
+  <div class="row">
+    <div *ngFor="let employee of employees | orderBy : key :reverse | paginate: {itemsPerPage:3,currentPage:p};" class="col-md-6 col-xl-3" >
+      <div class="card m-b-30">
+        <div class="card-body row">
+          <div class="col-6">
+            <td (click)="sort('id')">{{employee.id}}</td>
+            <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a>
+          </div>
+          <div class="col-6 card-title align-self-center mb-0">
+            <h5 (click)="sort('name')">{{employee.name|uppercase}}</h5>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item" (click)="sort('employeeType')"><i class="fa fa-user float-right"></i>{{employee.employeeType.name}}</li>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+            <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+            <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times" mat-button (click)="openDelete(employee.id)"></i></a>
+          </div>
+          <ul class="social-links list-inline mb-0">
+            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="https://www.facebook.com/nhinbb" data-original-title="Facebook"><i class="fa fa-facebook-f" ></i></a></li>
+            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="https://twitter.com/Monicherii" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls style="text-align: end" (pageChange)="p = $event"></pagination-controls>
+</div>

@@ -1,0 +1,34 @@
+<div class="jumbotron">
+  <h2>Create - Employee Form</h2>
+</div>
+<br>
+<br>
+<div>
+  <form [formGroup]="createEmployee"  class="container" (ngSubmit)="addCustomer()"><!--(ngSubmit)="addCustomer()-->
+    <div class="form-group row">
+      <label for="inputType" class="col-sm-2 col-form-label">Employee Type: </label>
+      <div>
+        <select class="form-control" id="inputType" formControlName="employeeType">
+          <option *ngFor="let employeeType of employeeTypes" [ngValue]="employeeType">{{employeeType.name}}</option>
+        </select>
+      </div>
+      <!--<small *ngIf="createEmployee.get('employeeType').invalid && createEmployee.touched" class="text-danger">employeeType is Invalid</small>-->
+    </div>
+    <div class="form-group row">
+      <label for="inputName" class="col-sm-2 col-form-label">Name: </label>
+      <div>
+        <input type="text" class="form-group" id="inputName" formControlName="name">
+      </div>
+      <!--<small *ngIf="createEmployee.get('name').invalid && createEmployee.touched" class="text-danger">Name is Invalid</small>-->
+    </div>
+    <div class="form-group row">
+      <label for="inputAdd" class="col-sm-2 col-form-label">Image: </label>
+      <div>
+        <input type="text" id="inputAdd" class="form-group" formControlName="imageUrl">
+      </div>
+      <!--<small  *ngIf="createEmployee.get('imageUrl').invalid&& createEmployee.touched" class="text-danger">Image is Invalid</small>-->
+    </div>
+    <button  type="submit" class="btn btn-danger" >Submit</button><!--[disabled]="createEmployee"-->
+    <a [routerLink]="['/employees']" style="padding-left: 50%">Back</a>
+  </form>
+</div>
